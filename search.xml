@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux 安装java8]]></title>
+    <url>%2Flinux%2Flinux-install-java8.html</url>
+    <content type="text"><![CDATA[1、下载安装包1http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 2、 解压安装包到指定目录12tar -xf jdk-8u162-linux-x64.tar.gzmv jdk1.8.0_162 /usr/share/ 3、 配置环境变量123export JAVA_HOME=/usr/share/jdk1.8.0_162export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jarexport PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH 4、 执行profile1source /etc/profile 5、测试java是否安装正确1234 [root@node3 share]# java -versionjava version &quot;1.8.0_162&quot;Java(TM) SE Runtime Environment (build 1.8.0_162-b12)Java HotSpot(TM) 64-Bit Server VM (build 25.162-b12, mixed mode)]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql二进制安装]]></title>
     <url>%2Fdatabase%2Fmysql%2Fbinary-mysql-install.html</url>
     <content type="text"><![CDATA[环境12centos7mysql 5.6 下载安装包12下载地址：ttps://dev.mysql.com/downloads/mysql/5.6.html#downloads选择linux-generic 解压安装包12tar -xf mysql-5.6.36-linux-glibc2.5-x86_64.tar.gzmv mysql-5.6.36-linux-glibc2.5-x86_64 /usr/local/mysql 修改配置文件（/etc/my.cnf）1234567[mysqld]basedir = /usr/local/mysqldatadir = /application/mysqldataport = 3306server_id = 1binlog-format=row sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 安装依赖包不安装则后续初始化mysql时可能会报缺少Data:Dumper或者libaio包的错123456安装 Data::Dumper有三种方法1，yum install perl-Data-Dumper.x86_64（见https://my.oschina.net/dabird/blog/5506312，yum -y install autoconf3，yum install &apos;perl(Data::Dumper)&apos;安装libaio包yum install libaio 创建mysql用户和mysql用户组12groupadd mysqluseradd mysql -s /sbin/nologin -M -g mysql 配置环境变量12345方法一：echo &apos;export PATH=/application/mysql/bin:$PATH&apos; &gt;&gt;/etc/profilesource /etc/profile方法二：ln -s /usr/local/mysql/bin/* /usr/local/bin/ 创建数据目录并赋权12mkdir -p /application/mysqldata chown -R mysql.mysql /application/mysqldata 初始化data目录12cd /usr/local/mysql/scripts./mysql_install_db --basedir=/usr/local/mysql --datadir=/application/mysqldata --user=mysql 配置 service mysqld start123cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld chmod +x /etc/init.d/mysqld 修改一下/etc/init.d/mysqld 的basedir和datadir分别为/usr/local/mysql和/application/mysqldata 启动 ，登录，修改密码12$service mysqld start$mysql]]></content>
