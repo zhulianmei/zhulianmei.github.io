@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[mysql二进制安装]]></title>
+    <url>%2Fdatabase%2Fmysql%2Fbinary-mysql-install.html</url>
+    <content type="text"><![CDATA[环境12centos7mysql 5.6 下载安装包12下载地址：ttps://dev.mysql.com/downloads/mysql/5.6.html#downloads选择linux-generic 解压安装包12tar -xf mysql-5.6.36-linux-glibc2.5-x86_64.tar.gzmv mysql-5.6.36-linux-glibc2.5-x86_64 /usr/local/mysql 修改配置文件（/etc/my.cnf）1234567[mysqld]basedir = /usr/local/mysqldatadir = /application/mysqldataport = 3306server_id = 1binlog-format=row sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES 安装依赖包不安装则后续初始化mysql时可能会报缺少Data:Dumper或者libaio包的错123456安装 Data::Dumper有三种方法1，yum install perl-Data-Dumper.x86_64（见https://my.oschina.net/dabird/blog/5506312，yum -y install autoconf3，yum install &apos;perl(Data::Dumper)&apos;安装libaio包yum install libaio 创建mysql用户和mysql用户组12groupadd mysqluseradd mysql -s /sbin/nologin -M -g mysql 配置环境变量12345方法一：echo &apos;export PATH=/application/mysql/bin:$PATH&apos; &gt;&gt;/etc/profilesource /etc/profile方法二：ln -s /usr/local/mysql/bin/* /usr/local/bin/ 创建数据目录并赋权12mkdir -p /application/mysqldata chown -R mysql.mysql /application/mysqldata 初始化data目录12cd /usr/local/mysql/scripts./mysql_install_db --basedir=/usr/local/mysql --datadir=/application/mysqldata --user=mysql 配置 service mysqld start123cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld chmod +x /etc/init.d/mysqld 修改一下/etc/init.d/mysqld 的basedir和datadir分别为/usr/local/mysql和/application/mysqldata 启动 ，登录，修改密码12$service mysqld start$mysql]]></content>
+      <categories>
+        <category>database</category>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[纪念日]]></title>
+    <url>%2Funcategorized%2Fmemday.html</url>
+    <content type="text"><![CDATA[Title 小懒虫，我们已经 相识 days hours minute seconds function loveTime() { var date = new Date() - new Date(2010,09,11) var days = Math.floor(date / 1000 / 60 / 60 / 24) // 从这里开始 var daysmod = date - days * 24 *60 * 60 * 1000 var hours = Math.floor(daysmod / 1000 / 60 / 60) var hoursmod = date - (days * 24 *60 * 60 * 1000) - (hours * 1000 * 60 * 60) var minutes = Math.floor(hoursmod / 1000 / 60) var minutesmod = date - (days * 24 *60 * 60 * 1000) - (hours * 1000 * 60 * 60) - (minutes * 1000 * 60) var seconds = Math.floor(minutesmod / 1000) // 到这里结束，是将总毫秒转化成对应天数+小时数+分钟数+秒数的转换方法 var daysshow = document.getElementById("timdid1"); var ds = document.getElementById("timeid1"); var hs = document.getElementById("timeid2"); var ms = document.getElementById("timeid3"); var ss = document.getElementById("timeid4"); ds.innerHTML = days; hs.innerHTML = hours; ms.innerHTML = minutes; ss.innerHTML = seconds; } // 使用定时器实现每一秒写一次时间 setInterval("loveTime();",1000); 结婚 days hours minute seconds function loveTime1() { var date = new Date() - new Date(2016,04,02) var days = Math.floor(date / 1000 / 60 / 60 / 24) // 从这里开始 var daysmod = date - days * 24 *60 * 60 * 1000 var hours = Math.floor(daysmod / 1000 / 60 / 60) var hoursmod = date - (days * 24 *60 * 60 * 1000) - (hours * 1000 * 60 * 60) var minutes = Math.floor(hoursmod / 1000 / 60) var minutesmod = date - (days * 24 *60 * 60 * 1000) - (hours * 1000 * 60 * 60) - (minutes * 1000 * 60) var seconds = Math.floor(minutesmod / 1000) // 到这里结束，是将总毫秒转化成对应天数+小时数+分钟数+秒数的转换方法 var daysshow = document.getElementById("timdid1"); var ds = document.getElementById("timeid5"); var hs = document.getElementById("timeid6"); var ms = document.getElementById("timeid7"); var ss = document.getElementById("timeid8"); ds.innerHTML = days; hs.innerHTML = hours; ms.innerHTML = minutes; ss.innerHTML = seconds; } // 使用定时器实现每一秒写一次时间 setInterval("loveTime1();",1000);]]></content>
+      <tags>
+        <tag>memday</tag>
+      </tags>
+  </entry>
+</search>
