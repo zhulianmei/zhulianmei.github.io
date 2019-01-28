@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hadoop,CDH,">
+  <meta name="keywords" content="mysql,">
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="说明： 1，本blog只包含了CDH的搭建，未包含网页配置各个组件 2, 两台和多台机器搭建只在于dfs.replications参数的修改和setrep命令的执行，其他基本一致 下载安装包cm（cloudera manager）下载地址:http://archive.cloudera.com/cm5/cm/5/12下载的文件:cloudera-manager-centos7-cm5.10.2_x">
-<meta name="keywords" content="hadoop,CDH">
+<meta name="description" content="元数据锁博客地址：https://blog.csdn.net/wanbf123/article/details/80697787 121 server实现的锁，2 保证DDL操作与DML操作之间的一致性而实现的">
+<meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="两台机器搭建CDH">
-<meta property="og:url" content="http://yoursite.com/基础环境搭建/hadoop/cdh-install.html">
+<meta property="og:title" content="mysql 小知识">
+<meta property="og:url" content="http://yoursite.com/mysql/mysql-knowlege.html">
 <meta property="og:site_name" content="zhulianmei&#39;blog">
-<meta property="og:description" content="说明： 1，本blog只包含了CDH的搭建，未包含网页配置各个组件 2, 两台和多台机器搭建只在于dfs.replications参数的修改和setrep命令的执行，其他基本一致 下载安装包cm（cloudera manager）下载地址:http://archive.cloudera.com/cm5/cm/5/12下载的文件:cloudera-manager-centos7-cm5.10.2_x">
+<meta property="og:description" content="元数据锁博客地址：https://blog.csdn.net/wanbf123/article/details/80697787 121 server实现的锁，2 保证DDL操作与DML操作之间的一致性而实现的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://note.youdao.com/yws/public/resource/84b2714e15dd6e9ca792d0bc6706a3cd/xmlnote/9BD47A4A20FC46AD9EC7DCA97C5A38CD/4EB90600BCB94146AFF8DCF3785FF5F1/2390">
-<meta property="og:updated_time" content="2019-01-17T07:45:55.904Z">
+<meta property="og:image" content="https://zhulianmei-1258494513.cos.ap-shanghai.myqcloud.com/mysql_knowlege/mysql8.0.13%E9%9D%9E%E5%89%8D%E7%BC%80%E7%B4%A2%E5%BC%95.png">
+<meta property="og:updated_time" content="2019-01-28T08:43:38.204Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="两台机器搭建CDH">
-<meta name="twitter:description" content="说明： 1，本blog只包含了CDH的搭建，未包含网页配置各个组件 2, 两台和多台机器搭建只在于dfs.replications参数的修改和setrep命令的执行，其他基本一致 下载安装包cm（cloudera manager）下载地址:http://archive.cloudera.com/cm5/cm/5/12下载的文件:cloudera-manager-centos7-cm5.10.2_x">
-<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/84b2714e15dd6e9ca792d0bc6706a3cd/xmlnote/9BD47A4A20FC46AD9EC7DCA97C5A38CD/4EB90600BCB94146AFF8DCF3785FF5F1/2390">
+<meta name="twitter:title" content="mysql 小知识">
+<meta name="twitter:description" content="元数据锁博客地址：https://blog.csdn.net/wanbf123/article/details/80697787 121 server实现的锁，2 保证DDL操作与DML操作之间的一致性而实现的">
+<meta name="twitter:image" content="https://zhulianmei-1258494513.cos.ap-shanghai.myqcloud.com/mysql_knowlege/mysql8.0.13%E9%9D%9E%E5%89%8D%E7%BC%80%E7%B4%A2%E5%BC%95.png">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/基础环境搭建/hadoop/cdh-install.html">
+  <link rel="canonical" href="http://yoursite.com/mysql/mysql-knowlege.html">
 
 
 
 
 
-  <title>两台机器搭建CDH | zhulianmei'blog</title>
+  <title>mysql 小知识 | zhulianmei'blog</title>
   
 
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/基础环境搭建/hadoop/cdh-install.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/mysql/mysql-knowlege.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhulianmei">
@@ -314,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">两台机器搭建CDH</h1>
+          <h1 class="post-title" itemprop="name headline">mysql 小知识</h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T15:30:03+08:00">
-                2019-01-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T16:17:16+08:00">
+                2019-01-28
               </time>
             
 
@@ -349,19 +349,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/基础环境搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">基础环境搭建</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/基础环境搭建/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -398,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k 字
+                  280 字
                 </span>
               
 
@@ -414,7 +403,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7 分
+                  1 分
                 </span>
               
             </div>
@@ -435,33 +424,16 @@
       
 
       
-        <p><strong>说明：</strong></p>
-<p><strong>1，本blog只包含了CDH的搭建，未包含网页配置各个组件</strong></p>
-<p><strong>2, 两台和多台机器搭建只在于dfs.replications参数的修改和setrep命令的执行，其他基本一致</strong></p>
-<h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><p><strong>cm（cloudera manager）下载地址:<font color="blue"><a href="http://archive.cloudera.com/cm5/cm/5/" target="_blank" rel="noopener">http://archive.cloudera.com/cm5/cm/5/</a></font></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">下载的文件:</span><br><span class="line">cloudera-manager-centos7-cm5.10.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure></p>
+        <h1 id="元数据锁"><a href="#元数据锁" class="headerlink" title="元数据锁"></a>元数据锁</h1><p><strong>博客地址：<a href="https://blog.csdn.net/wanbf123/article/details/80697787" target="_blank" rel="noopener">https://blog.csdn.net/wanbf123/article/details/80697787</a></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 server实现的锁，</span><br><span class="line">2 保证DDL操作与DML操作之间的一致性而实现的</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<p><strong>hadoop各个组件安装包下载地址:<font color="blue"><a href="http://archive.cloudera.com/cdh5/parcels/5.10.2/" target="_blank" rel="noopener">http://archive.cloudera.com/cdh5/parcels/5.10.2/</a></font></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">下载的文件:</span><br><span class="line">CDH-5.7.1-1.cdh5.7.1.p0.11-el7.parcel.sha1</span><br><span class="line">CDH-5.7.1-1.cdh5.7.1.p0.11-el7.parcel</span><br><span class="line">manifest.json</span><br></pre></td></tr></table></figure></p>
-<p><strong>jdbc连接mysql的jar包(页面选择Plantform Independent):<font color="blue"><a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/connector/j/</a></font></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">下载的文件:</span><br><span class="line">mysql-connector-java-5.1.46-bin.jar</span><br></pre></td></tr></table></figure></p>
-<h2 id="机器配置无密码登录"><a href="#机器配置无密码登录" class="headerlink" title="机器配置无密码登录"></a>机器配置无密码登录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">三台机器主机名分别为 :node1 node2 </span><br><span class="line"></span><br><span class="line">[root@node1 ~]# ssh-keygen -t rsa一路回车默认值</span><br><span class="line">[root@node1 ~]# ssh-copy-id node1</span><br><span class="line">[root@node1 ~]# ssh-copy-id node2 </span><br><span class="line"></span><br><span class="line">另一台机器均执行以上命令</span><br></pre></td></tr></table></figure>
-<h2 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h2><p><strong>详见 <font color="blue"><a href="https://zhulianmei.github.io/linux/linux-install-java8.html" target="_blank" rel="noopener">https://zhulianmei.github.io/linux/linux-install-java8.html</a></font></strong></p>
-<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><p><strong>详见: <font color="blue"><a href="https://zhulianmei.github.io/database/mysql/binary-mysql-install.html" target="_blank" rel="noopener">https://zhulianmei.github.io/database/mysql/binary-mysql-install.html</a></font></strong></p>
-<p><strong>注意! binlog模式必须为row</strong></p>
-<h2 id="处理cm安装包和mysql-connector"><a href="#处理cm安装包和mysql-connector" class="headerlink" title="处理cm安装包和mysql-connector"></a>处理cm安装包和mysql-connector</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 opt]# tar -xf /root/cloudera-manager-el6-cm5.7.1_x86_64.tar.gz -C /opt/</span><br><span class="line">[root@node1 opt]# ls /opt/</span><br><span class="line">cloudera  cm-5.7.1</span><br><span class="line">[root@node1 ]# tar -xf mysql-connector-java-5.1.46-bin.jar</span><br><span class="line">[root@node1 opt]# cp mysql-connector-java-5.1.46-bin.jar/mysql-connector-java-5.1.46-bin.jar /opt/cm-5.7.1/share/cmf/lib/</span><br></pre></td></tr></table></figure>
-<h2 id="初始化scm库"><a href="#初始化scm库" class="headerlink" title="初始化scm库"></a>初始化scm库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">本机 mysql&gt; grant all on *.* to &apos;temp&apos;@&apos;%&apos; identified by &apos;temp&apos; with grant option;</span><br><span class="line"></span><br><span class="line">初始化命令:</span><br><span class="line">格式:scm_prepare_database.sh 数据库类型 数据库 服务器IP 用户名 密码 –scm-host Cloudera_Manager_Server机器IP scm scm scm</span><br><span class="line">如：[root@node1 opt]# /opt/cm-5.7.1/share/cmf/schema/scm_prepare_database.sh mysql cm -hlocalhost -utemp -ptemp  scm scm scm</span><br><span class="line">输出如下：</span><br><span class="line">JAVA_HOME=/usr/share/jdk1.8.0_162</span><br><span class="line">Verifying that we can write to /opt/cm-5.7.1/etc/cloudera-scm-server</span><br><span class="line">Creating SCM configuration file in /opt/cm-5.7.1/etc/cloudera-scm-server</span><br><span class="line">groups: cloudera-scm：无此用户</span><br><span class="line">Executing:  /usr/share/jdk1.8.0_162/bin/java -cp /usr/share/java/mysql-connector-java.jar:/usr/share/java/oracle-connector-java.jar:/opt/cm-5.7.1/share/cmf/schema/../lib/* com.cloudera.enterprise.dbutil.DbCommandExecutor /opt/cm-5.7.1/etc/cloudera-scm-server/db.properties com.cloudera.cmf.db.</span><br><span class="line">2018-06-08 15:08:17,901 [main] INFO  com.cloudera.enterprise.dbutil.DbCommandExecutor  - Successfully connected to database.</span><br><span class="line">All done, your SCM database is configured correctly!</span><br><span class="line"></span><br><span class="line">以上步骤会创建一个scm库和scm用户密码为scm 用于存放和访问CM的数据</span><br></pre></td></tr></table></figure>
-<h2 id="所有agent节点添加scm用户"><a href="#所有agent节点添加scm用户" class="headerlink" title="所有agent节点添加scm用户"></a>所有agent节点添加scm用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd --system --home=/opt/cm-5.7.1/run/cloudera-scm-server/ --no-create-home --shell=/bin/false --comment &quot;Cloudera SCM User&quot; cloudera-scm</span><br></pre></td></tr></table></figure>
-<h2 id="配置agent"><a href="#配置agent" class="headerlink" title="配置agent"></a>配置agent</h2><p><strong>修改agent的配置文件的serverhost并分发文件到其他agent机器</strong></p>
-<p><font color="red">（注意不要直接scp，文件中软连接源文件976M，拷贝完的文件变成了1.7G）</font>**<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 ~]# vim /opt/cm-5.7.1/etc/cloudera-scm-agent/config.ini</span><br><span class="line">server_host=node1</span><br><span class="line"></span><br><span class="line">[root@node1 opt]# tar -czf cm-5.7.1.tar.gz cm-5.7.1</span><br><span class="line">[root@node1 opt]# scp cm-5.7.1.tar.gz node2:/opt/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在node2解压cm-5.7.1.tar.gz</span><br></pre></td></tr></table></figure></p>
-<h2 id="拷贝镜像文件到-opt镜像仓库"><a href="#拷贝镜像文件到-opt镜像仓库" class="headerlink" title="拷贝镜像文件到/opt镜像仓库"></a>拷贝镜像文件到/opt镜像仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 cloudera]# cp /root/CDH-5.7.1-1.cdh5.7.1.p0.11-el6.parcel* /opt/cloudera/parcel-repo/</span><br><span class="line">[root@node1 cloudera]# cp /root/CDH-5.7.1-1.cdh5.7.1.p0.11-el6.parcel* /opt/cloudera/parcel-repo/</span><br><span class="line">[root@node1 cloudera]# cp /root/manifest.json /opt/cloudera/parcel-repo/</span><br><span class="line"></span><br><span class="line">重命名文件，否则会重新下载镜像文件</span><br><span class="line">root@node1 ~]# cd /opt/cloudera/parcel-repo/</span><br><span class="line">[root@node1 parcel-repo]# ls</span><br><span class="line">CDH-5.7.1-1.cdh5.7.1.p0.11-el6.parcel  CDH-5.7.1-1.cdh5.7.1.p0.11-el6.parcel.sha1  manifest.json</span><br><span class="line">[root@node1 parcel-repo]# mv CDH-5.7.1-1.cdh5.7.1.p0.11-el6.parcel.sha1 CDH-5.7.1-1.cdh5.7.1.p0.11-el6.parcel.sha</span><br></pre></td></tr></table></figure>
-<h2 id="启动server和agent进程"><a href="#启动server和agent进程" class="headerlink" title="启动server和agent进程"></a>启动server和agent进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 parcel-repo]# /opt/cm-5.7.1/etc/init.d/cloudera-scm-server start</span><br><span class="line">Starting cloudera-scm-server:                              [确定]</span><br><span class="line">[root@node1 parcel-repo]# /opt/cm-5.7.1/etc/init.d/cloudera-scm-agent start</span><br><span class="line">正在启动 cloudera-scm-agent：                              [确定]</span><br><span class="line">[root@node1 parcel-repo]#</span><br></pre></td></tr></table></figure>
-<h2 id="查看是否启动成功server-初次启动需要初始化，要等4-5分钟"><a href="#查看是否启动成功server-初次启动需要初始化，要等4-5分钟" class="headerlink" title="查看是否启动成功server(初次启动需要初始化，要等4-5分钟)"></a>查看是否启动成功server(初次启动需要初始化，要等4-5分钟)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">查看server日志</span><br><span class="line">[root@node1 ~]# tail -f /opt/cm-5.7.1/log/cloudera-scm-server/cloudera-scm-server.log </span><br><span class="line">2018-06-08 16:14:26,441 INFO WebServerImpl:org.mortbay.log: jetty-6.1.26.cloudera.4</span><br><span class="line">2018-06-08 16:14:26,450 INFO WebServerImpl:org.mortbay.log: Started SelectChannelConnector@0.0.0.0:7180</span><br><span class="line">2018-06-08 16:14:26,451 INFO WebServerImpl:com.cloudera.server.cmf.WebServerImpl: Started Jetty server.</span><br><span class="line">查看端口</span><br><span class="line">[root@node1 lib]# ss -lntup|grep 7180</span><br><span class="line">tcp    LISTEN     0      50                     *:7180                  *:*      users:((&quot;java&quot;,24866,265))</span><br></pre></td></tr></table></figure>
-<p>成功启动如下图<br><img src="https://note.youdao.com/yws/public/resource/84b2714e15dd6e9ca792d0bc6706a3cd/xmlnote/9BD47A4A20FC46AD9EC7DCA97C5A38CD/4EB90600BCB94146AFF8DCF3785FF5F1/2390" alt=""></p>
-<h2 id="两台机器需要注意两点"><a href="#两台机器需要注意两点" class="headerlink" title="两台机器需要注意两点"></a>两台机器需要注意两点</h2><p><strong>在控制台的各个组件 配置标签的搜索框内分别搜索以下两个参数</strong></p>
-<h3 id="1-dfs-replication"><a href="#1-dfs-replication" class="headerlink" title="1,dfs.replication"></a>1,dfs.replication</h3><p><strong>按照以上配置之后会出现HDFS 副本块不足的报错</strong></p>
-<p><strong>步骤一：</strong> 先将dfs.replication 的参数修改为2， 修改之后即使重启还是会有”副本块不足的”报错。因为这个参数其实只在文件被写入dfs时起作用原有写入hdfs的备份数目还是不会改变。</p>
-<p><strong>步骤二：</strong> 主机上执行命令：hadoop fs fs -setrep -R 2 /</p>
-<p>如果报权限不够，需要先执行 export HADOOP_USER_NAME=hdfs，再执行上面的命令，感谢<font color="blue"><a href="https://community.cloudera.com/t5/CDH-Manual-Installation/Permission-denied-user-root-access-WRITE-inode-quot-user/td-p/4943" target="_blank" rel="noopener">https://community.cloudera.com/t5/CDH-Manual-Installation/Permission-denied-user-root-access-WRITE-inode-quot-user/td-p/4943</a></font><br>提出（可能需要翻，在最后一个评论。翻了好久才找到- -。。）</p>
-<p>上面的命令输出为：其中Replication 与DataNode个数相对应<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Replication 2 set: /hbase/MasterProcWALs/state-00000000000000000003.log</span><br><span class="line">Replication 2 set: /hbase/data/hbase/meta/.tabledesc/.tableinfo.0000000001</span><br><span class="line">Replication 2 set: /hbase/data/hbase/meta/1588230740/.regioninfo</span><br><span class="line">Replication 2 set: /hbase/data/hbase/meta/1588230740/info/8e2bccc11b8e44f8808d6fd1a30b770f</span><br><span class="line">Replication 2 set: /hbase/data/hbase/meta/1588230740/recovered.edits/11.seqid</span><br><span class="line">Replication 2 set: /hbase/data/hbase/namespace/.tabledesc/.tableinfo.0000000001</span><br><span class="line">Replication 2 set: /hbase/data/hbase/namespace/2c5eb1eb90795cc88b0c17b91cefb5c4/.regioninfo</span><br><span class="line">Replication 2 set: /hbase/data/hbase/namespace/2c5eb1eb90795cc88b0c17b91cefb5c4/info/1f85f0f0d9b04d6f8c748f216fc969fc</span><br><span class="line">Replication 2 set: /hbase/data/hbase/namespace/2c5eb1eb90795cc88b0c17b91cefb5c4/recovered.edits/10.seqid</span><br><span class="line">Replication 2 set: /hbase/hbase.id</span><br><span class="line">Replication 2 set: /hbase/hbase.version</span><br><span class="line">Replication 2 set: /hbase/oldWALs/gyb-p-common-01%2C60020%2C1547633332491.null0.1547633337412</span><br><span class="line">Replication 2 set: /hbase/oldWALs/hzd-p-skywalking-11%2C60020%2C1547633331411..meta.1547633343341.meta</span><br><span class="line">Replication 2 set: /hbase/oldWALs/hzd-p-skywalking-11%2C60020%2C1547633331411..meta.1547633344205.meta</span><br><span class="line">Replication 2 set: /hbase/oldWALs/hzd-p-skywalking-11%2C60020%2C1547633331411..meta.1547633344612.meta</span><br><span class="line">Replication 2 set: /hbase/oldWALs/hzd-p-skywalking-11%2C60020%2C1547633331411..meta.1547633881775.meta</span><br><span class="line">Replication 2 set: /hbase/oldWALs/hzd-p-skywalking-11%2C60020%2C1547633331411..meta.1547633881853.meta</span><br><span class="line">Replication 2 set: /hbase/oldWALs/hzd-p-skywalking-11%2C60020%2C1547633331411.null0.1547633655183</span><br><span class="line">Replication 2 set: /hbase/oldWALs/hzd-p-skywalking-11%2C60020%2C1547633331411.null0.1547633956325</span><br></pre></td></tr></table></figure></p>
-<h3 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这个主要是修改log文件和firehose.storage.base.directory(cm的Host Monitor和Service Monitor监控数据的存放位置)的路径，不修改可能会将根目录撑满</span><br></pre></td></tr></table></figure>
+<h1 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h1><p><strong>mysql 8.0.13之后非前缀索引也可以用了</strong><br><img src="https://zhulianmei-1258494513.cos.ap-shanghai.myqcloud.com/mysql_knowlege/mysql8.0.13%E9%9D%9E%E5%89%8D%E7%BC%80%E7%B4%A2%E5%BC%95.png" alt="非前缀索引8.0.13"></p>
+<h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><p><strong>配置文件读取顺序如下：并且直到读取到最后一个my.cnf</strong></p>
+<p><font color="red">初始化和启动mysql的时候一定要指定my.cnf的位置</font><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@node3 ~]# mysql --help |grep -B 1 my.cnf|grep -v &apos;\-P&apos;</span><br><span class="line">                      order of preference, my.cnf, $MYSQL_TCP_PORT,</span><br><span class="line">--</span><br><span class="line">Default options are read from the following files in the given order:</span><br><span class="line">/etc/my.cnf /etc/mysql/my.cnf /usr/local/mysql/etc/my.cnf ~/.my.cnf</span><br></pre></td></tr></table></figure></p>
+<h1 id="常用命令集"><a href="#常用命令集" class="headerlink" title="常用命令集"></a>常用命令集</h1><h2 id="查询锁等待-元数据锁无法查询到"><a href="#查询锁等待-元数据锁无法查询到" class="headerlink" title="查询锁等待(元数据锁无法查询到)"></a>查询锁等待(元数据锁无法查询到)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select r.trx_id   wait_trx_id,r.trx_mysql_thread_id wait_thr_id,r.trx_query   wait_query,b.trx_id    block_trx_id,b.trx_mysql_thread_id block_thrd_id,b.trx_query block_query from information_schema.innodb_lock_waits w inner join information_schema.innodb_trx b on b.trx_id = w.blocking_trx_id inner join information_schema.innodb_trx r on r.trx_id =w.requesting_trx_id;</span><br></pre></td></tr></table></figure>
+<h2 id="主从复制进程"><a href="#主从复制进程" class="headerlink" title="主从复制进程"></a>主从复制进程</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">STOP</span> <span class="keyword">SLAVE</span> IO_THREAD;</span><br><span class="line"><span class="keyword">STOP</span> <span class="keyword">SLAVE</span> SQL_THREAD;</span><br><span class="line"></span><br><span class="line"><span class="keyword">START</span> <span class="keyword">SLAVE</span> IO_THREAD;</span><br><span class="line"><span class="keyword">START</span> <span class="keyword">SLAVE</span> SQL_THREAD;</span><br></pre></td></tr></table></figure>
+<h2 id="查询数据量大小"><a href="#查询数据量大小" class="headerlink" title="查询数据量大小"></a>查询数据量大小</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select concat(round(sum(DATA_LENGTH/1024/1024/1024)+sum(INDEX_LENGTH/1024/1024/1024),2),&apos;G&apos;) from information_schema.tables;</span><br></pre></td></tr></table></figure>
+<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">character-set-server=utf8</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">[client]</span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -479,9 +451,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
-          
-            <a href="/tags/CDH/" rel="tag"># CDH</a>
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
         </div>
       
@@ -494,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/基础环境搭建/linux/linux-install-java8.html" rel="next" title="linux 安装java8">
-                <i class="fa fa-chevron-left"></i> linux 安装java8
+              <a href="/基础环境搭建/hadoop/cdh-install.html" rel="next" title="两台机器搭建CDH">
+                <i class="fa fa-chevron-left"></i> 两台机器搭建CDH
               </a>
             
           </div>
@@ -503,10 +473,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/mysql/mysql-knowlege.html" rel="prev" title="mysql 小知识">
-                mysql 小知识 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -642,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装包"><span class="nav-number">1.</span> <span class="nav-text">下载安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器配置无密码登录"><span class="nav-number">2.</span> <span class="nav-text">机器配置无密码登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装java"><span class="nav-number">3.</span> <span class="nav-text">安装java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装mysql"><span class="nav-number">4.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理cm安装包和mysql-connector"><span class="nav-number">5.</span> <span class="nav-text">处理cm安装包和mysql-connector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化scm库"><span class="nav-number">6.</span> <span class="nav-text">初始化scm库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有agent节点添加scm用户"><span class="nav-number">7.</span> <span class="nav-text">所有agent节点添加scm用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置agent"><span class="nav-number">8.</span> <span class="nav-text">配置agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝镜像文件到-opt镜像仓库"><span class="nav-number">9.</span> <span class="nav-text">拷贝镜像文件到/opt镜像仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动server和agent进程"><span class="nav-number">10.</span> <span class="nav-text">启动server和agent进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看是否启动成功server-初次启动需要初始化，要等4-5分钟"><span class="nav-number">11.</span> <span class="nav-text">查看是否启动成功server(初次启动需要初始化，要等4-5分钟)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两台机器需要注意两点"><span class="nav-number">12.</span> <span class="nav-text">两台机器需要注意两点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-dfs-replication"><span class="nav-number">12.1.</span> <span class="nav-text">1,dfs.replication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#var"><span class="nav-number">12.2.</span> <span class="nav-text">/var</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#元数据锁"><span class="nav-number">1.</span> <span class="nav-text">元数据锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前缀索引"><span class="nav-number">2.</span> <span class="nav-text">前缀索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令集"><span class="nav-number">4.</span> <span class="nav-text">常用命令集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查询锁等待-元数据锁无法查询到"><span class="nav-number">4.1.</span> <span class="nav-text">查询锁等待(元数据锁无法查询到)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从复制进程"><span class="nav-number">4.2.</span> <span class="nav-text">主从复制进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询数据量大小"><span class="nav-number">4.3.</span> <span class="nav-text">查询数据量大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集"><span class="nav-number">4.4.</span> <span class="nav-text">字符集</span></a></li></ol></li></ol></div>
             
 
           </div>
