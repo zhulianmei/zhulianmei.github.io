@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python 小功能]]></title>
+    <url>%2Fpython%2Flinux%2Fpython-little-function.html</url>
+    <content type="text"><![CDATA[list排序,按照元素内的数字大小1234567891011121314def tryint(s): try: return int(s) except ValueError: return sdef str2int(v_str): return [tryint(sub_str) for sub_str in re.split('([0-9]+)', v_str)] originFileList = ['1_aa.sql', '3_1.sql', '11_2.sql']print sorted(originFileList)# output ['11_2.sql', '1_aa.sql', '3_1.sql']print sorted(originFileList, key=str2int)# output ['1_aa.sql', '3_1.sql', '11_2.sql'] python ftp 直接读取远端文件并赋值变量12345678910111213from ftplib import FTPfrom io import BytesIOdef ftpGetFileData(): filename='/ftp/filename/path/filename' ftp = FTP() ftp.connect(ftpServer, ftpPort) ftp.login(ftpUsername, ftpPassword) bufsize = 1024 r = BytesIO() ftp.retrbinary('RETR ' + filename, r.write, bufsize) sql = r.getvalue() print sql]]></content>
+      <categories>
+        <category>python</category>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>python</tag>
+        <tag>ftp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql 小知识]]></title>
     <url>%2Fmysql%2Fmysql-knowlege.html</url>
     <content type="text"><![CDATA[元数据锁博客地址：https://blog.csdn.net/wanbf123/article/details/80697787 121 server实现的锁，2 保证DDL操作与DML操作之间的一致性而实现的 前缀索引mysql 8.0.13之后非前缀索引也可以用了 配置文件配置文件读取顺序如下：并且直到读取到最后一个my.cnf 初始化和启动mysql的时候一定要指定my.cnf的位置12345[root@node3 ~]# mysql --help |grep -B 1 my.cnf|grep -v &apos;\-P&apos; order of preference, my.cnf, $MYSQL_TCP_PORT,--Default options are read from the following files in the given order:/etc/my.cnf /etc/mysql/my.cnf /usr/local/mysql/etc/my.cnf ~/.my.cnf 常用命令集查询锁等待(元数据锁无法查询到)1select r.trx_id wait_trx_id,r.trx_mysql_thread_id wait_thr_id,r.trx_query wait_query,b.trx_id block_trx_id,b.trx_mysql_thread_id block_thrd_id,b.trx_query block_query from information_schema.innodb_lock_waits w inner join information_schema.innodb_trx b on b.trx_id = w.blocking_trx_id inner join information_schema.innodb_trx r on r.trx_id =w.requesting_trx_id; 主从复制进程12345STOP SLAVE IO_THREAD;STOP SLAVE SQL_THREAD;START SLAVE IO_THREAD;START SLAVE SQL_THREAD; 查询数据量大小1select concat(round(sum(DATA_LENGTH/1024/1024/1024)+sum(INDEX_LENGTH/1024/1024/1024),2),&apos;G&apos;) from information_schema.tables; 字符集123456[mysqld]character-set-server=utf8[mysql]default-character-set=utf8[client]default-character-set=utf8]]></content>
